@@ -1,0 +1,4 @@
+interface:
+  display_name: "Choir Sandora Web"
+  short_description: "Maintain the Choir Sandora website consistently"
+  default_prompt: "Update the Choir Sandora website while following its project conventions."

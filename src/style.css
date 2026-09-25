@@ -352,7 +352,8 @@ h1 em {
   width: 24px;
   height: 24px;
 }
-.page-copy h2 {
+.page-copy h2,
+.gallery-section h2 {
   font:
     500 clamp(26px, 3vw, 40px)/1.3 "Manrope",
     sans-serif;
@@ -362,6 +363,71 @@ h1 em {
   color: #626262;
   font-size: 17px;
   line-height: 1.9;
+}
+.gallery {
+  padding: 0 6%;
+}
+.gallery-section + .gallery-section {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid #b6924860;
+}
+.gallery-section h2 {
+  margin: 0 0 24px;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+.video-card {
+  min-width: 0;
+  margin: 0;
+}
+.video-player {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 12px;
+  background: #181818;
+}
+.video-player:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 6px;
+}
+.video-card figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #b6924860;
+  color: #626262;
+  font-size: 14px;
+}
+.video-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: #97752f;
+  text-underline-offset: 4px;
+}
+.video-card a:hover {
+  color: #181818;
+}
+.gallery-empty {
+  margin: 0;
+  padding: 32px 24px;
+  border: 1px solid #b6924860;
+  border-radius: 12px;
+  background: #faf9f6;
+  color: #626262;
+  line-height: 1.9;
+  text-align: center;
 }
 footer {
   max-width: 1440px;
@@ -391,6 +457,10 @@ footer small {
   margin-left: auto;
 }
 @media (max-width: 700px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
   :root {
     --header-height: 80px;
   }

@@ -218,7 +218,7 @@ const socialLinks = [
         <path d="m10 9 6 3-6 3Z" fill="var(--social-icon-background)" />
       </>
     ),
-  }
+  },
 ];
 
 function SocialLinks() {
@@ -232,6 +232,48 @@ function SocialLinks() {
         </a>
       ))}
     </nav>
+  );
+}
+
+const galleryVideos = ["-_OcyCtc5D4", "9i5UbPBU5ZQ"];
+
+function Gallery() {
+  return (
+    <div className="gallery">
+      <section className="gallery-section" aria-labelledby="videos-title">
+        <h2 id="videos-title">Vaizdo įrašai</h2>
+        <div className="video-grid">
+          {galleryVideos.map((id, index) => (
+            <figure className="video-card" key={id}>
+              <iframe
+                className="video-player"
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${id}`}
+                title={`Choro „Sandora“ vaizdo įrašas ${index + 1}`}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+              <figcaption>
+                <span>Vaizdo įrašas {index + 1}</span>
+                <a
+                  href={`https://www.youtube.com/watch?v=${id}`}
+                  aria-label={`Žiūrėti vaizdo įrašą ${index + 1} per YouTube`}
+                >
+                  Žiūrėti per YouTube <span aria-hidden="true">↗</span>
+                </a>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+      <section className="gallery-section" aria-labelledby="photos-title">
+        <h2 id="photos-title">Nuotraukos</h2>
+        <p className="gallery-empty">Šiuo metu nuotraukų nėra</p>
+      </section>
+    </div>
   );
 }
 
@@ -259,12 +301,7 @@ function ContentPage({ page }) {
           <p>Dainuoti. Jausti. Būti kartu.</p>
         </div>
       )}
-      {page.id === "galerija" && 
-      (
-        <div className="page-copy">
-          <p>Galerija bus paskelbta netrukus.</p>
-        </div>
-      )}
+      {page.id === "galerija" && <Gallery />}
       {page.id === "kontaktai" && (
         <div className="page-copy">
           <h2>Susitikime muzikoje.</h2>
