@@ -7,8 +7,9 @@ const sections = [
   { id: "galerija", label: "Galerija" },
   { id: "kontaktai", label: "Kontaktai" },
 ];
-const lorem =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+const currentPage = sections.find(({ id }) =>
+  window.location.pathname.endsWith("/" + id + ".html"),
+);
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -51,7 +52,7 @@ function App() {
 
   return (
     <>
-      <a className="skip-link" href="#pradzia">
+      <a className="skip-link" href="#turinys">
         Pereiti prie turinio
       </a>
       <header
@@ -81,7 +82,7 @@ function App() {
           </button>
           <a
             className="brand"
-            href="#pradzia"
+            href="./index.html"
             aria-label="Sandora — pradžia"
             onClick={() => setMenuOpen(false)}
           >
@@ -98,21 +99,17 @@ function App() {
           id="main-navigation"
           className="banner-menu"
           aria-label="Pagrindinė navigacija"
-          hidden={!menuOpen}
+          data-open={menuOpen}
+          inert={!menuOpen}
+          aria-hidden={!menuOpen}
         >
           <div className="menu-inner">
-            {sections.map(({ id, label }, index) => (
+            {sections.map(({ id, label }) => (
               <a
                 key={id}
-                href={"#" + id}
-                onClick={() => {
-                  setMenuOpen(false);
-                  document.getElementById(id).focus({ preventScroll: true });
-                }}
+                href={"./" + id + ".html"}
+                aria-current={currentPage?.id === id ? "page" : undefined}
               >
-                <span className="menu-number" aria-hidden="true">
-                  0{index + 1}
-                </span>
                 {label}
                 <span className="menu-arrow" aria-hidden="true">
                   ↗
@@ -122,103 +119,163 @@ function App() {
           </div>
         </nav>
       </header>
-      <main>
-        <section
-          id="pradzia"
-          className="opening"
-          aria-labelledby="title"
-          tabIndex={-1}
-        >
-          <div className="hero">
-            <div className="eyebrow">
-              <span /> SUSITIKIME MUZIKOJE{" "}
-              <span className="section-index">CHORAS / SANDORA</span>
-            </div>
-            <div className="title-row">
-              <h1 id="title">
-                Skirtingi balsai.
-                <br />
-                <em>Viena muzika.</em>
-              </h1>
-              <div className="seal" aria-hidden="true">
-                <span>CHORAS</span>
-                <b>S</b>
-                <span>SANDORA</span>
-              </div>
-            </div>
-            <div className="hero-bottom">
-              <p>
-                Esame „Sandora“ — žmonės, kuriuos sujungia daina.
-                <br className="desktop" /> Kuriame skambesį, kuriame kiekvienas
-                balsas svarbus.
-              </p>
-              <a className="scroll-cue" href="#apie-mus">
-                ATRASKITE DAUGIAU <span aria-hidden="true">↓</span>
-              </a>
-            </div>
-          </div>
-          <div className="music-panel" aria-label="Muzikinė kompozicija">
-            <div className="staff" aria-hidden="true">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <i key={i} style={{ "--i": i }} />
-              ))}
-              <span className="note note-one">♪</span>
-              <span className="note note-two">♫</span>
-              <span className="note note-three">♪</span>
-            </div>
-            <span className="panel-caption">
-              KAI BALSŲ DAUG, O JAUSMAS VIENAS.
-            </span>
-            <p>
-              Dainuoti.
-              <br />
-              Jausti.
-              <br />
-              <em>Būti kartu.</em>
-            </p>
-            <span className="panel-number" aria-hidden="true">
-              01 — ∞
-            </span>
-          </div>
-        </section>
-        {sections.map(({ id, label }, i) => (
-          <section
-            id={id}
-            key={label}
-            className={`content-section ${i % 2 === 0 ? "light" : "dark"}`}
-            aria-labelledby={`heading-${i + 2}`}
-            tabIndex={-1}
-          >
-            <div className="section-inner">
-              <div className="section-meta">
-                <span className="eyebrow">SANDORA / {label}</span>
-                <span className="large-number" aria-hidden="true">
-                  0{i + 2}
-                </span>
-              </div>
-              <div className="section-copy">
-                <span className="eyebrow">SKIRTINGI BALSAI. VIENA MUZIKA.</span>
-                <h2 id={`heading-${i + 2}`}>
-                  {label}
-                  <span>.</span>
-                </h2>
-                <div className="gold-rule" />
-                <p>{lorem}</p>
-                <p>{lorem}</p>
-                <span className="section-end">
-                  CHORAS „SANDORA“ <span aria-hidden="true">✦</span>
-                </span>
-              </div>
-            </div>
-          </section>
-        ))}
+      <main id="turinys" tabIndex={-1}>
+        {currentPage ? <ContentPage page={currentPage} /> : <HomePage />}
       </main>
       <footer>
         <span className="footer-name">Sandora.</span>
         <span>Skambame kartu.</span>
+        <SocialLinks />
         <small>© {new Date().getFullYear()} Choras „Sandora“</small>
       </footer>
     </>
   );
 }
+
+function HomePage() {
+  return (
+    <section
+      id="pradzia"
+      className="opening"
+      aria-labelledby="title"
+      tabIndex={-1}
+    >
+      <div className="hero">
+        <div className="eyebrow">
+          <span /> SUSITIKIME MUZIKOJE{" "}
+          <span className="section-index">CHORAS / SANDORA</span>
+        </div>
+        <div className="title-row">
+          <h1 id="title">
+            Skirtingi balsai.
+            <br />
+            <em>Viena muzika.</em>
+          </h1>
+          <div className="seal" aria-hidden="true">
+            <span>CHORAS</span>
+            <b>S</b>
+            <span>SANDORA</span>
+          </div>
+        </div>
+        <div className="hero-bottom">
+          <p>
+            Esame „Sandora“ — žmonės, kuriuos sujungia daina.
+            <br className="desktop" /> Kuriame skambesį, kuriame kiekvienas
+            balsas svarbus.
+          </p>
+        </div>
+      </div>
+      <ChoirPhoto />
+    </section>
+  );
+}
+
+function ChoirPhoto() {
+  return (
+    <figure className="choir-photo">
+      <img
+        src="./choras.jpg"
+        alt="Choro „Sandora“ nariai kartu bažnyčioje"
+        width="2048"
+        height="2048"
+      />
+      <figcaption>
+        <span>CHORAS „SANDORA“</span>
+        <span>Skambame kartu.</span>
+      </figcaption>
+    </figure>
+  );
+}
+
+const socialLinks = [
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61594672354888",
+    icon: (
+      <path
+        fill="currentColor"
+        d="M14 22v-9h3l.5-4H14V7c0-1.2.4-2 2-2h2V1.4C17.3 1.2 16.2 1 15 1c-3 0-5 1.8-5 5v3H7v4h3v9Z"
+      />
+    ),
+  },
+  {
+    name: "Instagram",
+    href: "https://google.com",
+    icon: (
+      <g fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </g>
+    ),
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/channel/UCV47HeuX8QplTtsz7Bs9IrQ",
+    icon: (
+      <>
+        <rect x="2" y="5" width="20" height="14" rx="5" fill="currentColor" />
+        <path d="m10 9 6 3-6 3Z" fill="var(--social-icon-background)" />
+      </>
+    ),
+  }
+];
+
+function SocialLinks() {
+  return (
+    <nav className="social-links" aria-label="Socialiniai tinklai">
+      {socialLinks.map(({ name, href, icon }) => (
+        <a key={name} href={href} aria-label={name} title={name}>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            {icon}
+          </svg>
+        </a>
+      ))}
+    </nav>
+  );
+}
+
+function ContentPage({ page }) {
+  return (
+    <article className="page-content" aria-labelledby="page-title">
+      <div className="page-heading">
+        <a className="back-link" href="./index.html">
+          ← Pradžia
+        </a>
+        <p className="eyebrow">CHORAS „SANDORA“</p>
+        <h1 id="page-title">
+          {page.label}
+          <em>.</em>
+        </h1>
+        <div className="gold-rule" />
+      </div>
+      {page.id === "apie-mus" && (
+        <div className="page-copy">
+          <h2>Skirtingi balsai. Viena muzika.</h2>
+          <p>
+            Esame „Sandora“ — žmonės, kuriuos sujungia daina. Kuriame skambesį,
+            kuriame kiekvienas balsas svarbus.
+          </p>
+          <p>Dainuoti. Jausti. Būti kartu.</p>
+        </div>
+      )}
+      {page.id === "galerija" && 
+      (
+        <div className="page-copy">
+          <p>Galerija bus paskelbta netrukus.</p>
+        </div>
+      )}
+      {page.id === "kontaktai" && (
+        <div className="page-copy">
+          <h2>Susitikime muzikoje.</h2>
+          <p>Gerb. Ponas Vardenis Pavardenis</p>
+          <p>Choro vadovas</p>
+          <p>+37061234567</p>
+          <p>ChoroPonas@gmail.com</p>
+        </div>
+      )}
+    </article>
+  );
+}
+
 createRoot(document.getElementById("root")).render(<App />);

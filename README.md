@@ -44,4 +44,4 @@ pnpm build
 pnpm preview
 ```
 
-Atidarykite peržiūros adresą su `/ChoirSandora/` keliu.
+Atidarykite terminale nurodytą peržiūros adresą.
