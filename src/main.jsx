@@ -235,7 +235,7 @@ function SocialLinks() {
   );
 }
 
-const galleryVideos = ["-_OcyCtc5D4", "9i5UbPBU5ZQ"];
+const galleryVideos = ["zFxXZjmz-Ms", "-_OcyCtc5D4", "9i5UbPBU5ZQ"];
 
 function Gallery() {
   return (
@@ -257,7 +257,6 @@ function Gallery() {
                 allowFullScreen
               />
               <figcaption>
-                <span>Vaizdo įrašas {index + 1}</span>
                 <a
                   href={`https://www.youtube.com/watch?v=${id}`}
                   aria-label={`Žiūrėti vaizdo įrašą ${index + 1} per YouTube`}
