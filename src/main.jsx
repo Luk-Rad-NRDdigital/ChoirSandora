@@ -261,7 +261,6 @@ function Gallery() {
                   href={`https://www.youtube.com/watch?v=${id}`}
                   aria-label={`Žiūrėti vaizdo įrašą ${index + 1} per YouTube`}
                 >
-                  Žiūrėti per YouTube <span aria-hidden="true">↗</span>
                 </a>
               </figcaption>
             </figure>
@@ -292,10 +291,12 @@ function ContentPage({ page }) {
       </div>
       {page.id === "apie-mus" && (
         <div className="page-copy">
-          <h2>Skirtingi balsai. Viena muzika.</h2>
           <p>
-            Esame „Sandora“ — žmonės, kuriuos sujungia daina. Kuriame skambesį,
-            kuriame kiekvienas balsas svarbus.
+            Kamerinio choro „Sandora“ atliekamos pirmosios giesmės nuskambėjo Mažeikiuose, Šv. Pranciškaus Asyžiečio parapijoje. Choro pradžia siekia 2005 metus, kai atsikūrusioje parapijoje susibūrė Sumos choras.
+Nuo 2016 metų, vadovaujant Pauliui Poškui, kolektyvas kryptingai puoselėja chorinio giedojimo tradiciją – atlieka keturbalses lietuviškas ir lotyniškas sakralines giesmes. Daug laiko ir pastangų skiriama tam, kad kiekvienas kūrinys skambėtų darniai, būtų meniškai išpildytas ir klausytojui perteiktų muzikos prasmę bei emociją.
+Šiandien „Sandorą“ vienija 17 choristų. Greta sakralinės muzikos choras vis drąsiau plečia savo repertuarą ir pasaulietinės muzikos kūriniais, atrasdamas naujas skambesio spalvas ir atverdamas galimybes pasirodyti įvairesniuose kultūriniuose renginiuose bei koncertinėse erdvėse.
+Choras gieda atlaidų ir sakralinės muzikos festivalių metu, dalyvauja kultūriniuose renginiuose. 2025 metų vasarą „Sandora“ dalyvavo Plungės Šv. Jono Krikštytojo parapijos sakralinės muzikos festivalyje „Ave Maria Plungensis“, skirtame pagerbti iškilų vargonininką ir kompozitorių Juozą Žilevičių.
+„Sandora“ – tai bendrystėje gimstanti muzika, jungianti tradiciją ir naujus skambesius, sakralumą ir pasaulietinę muziką, o svarbiausia – žmones, kuriems dainavimas kartu yra daugiau nei muzika.
           </p>
           <p>Dainuoti. Jausti. Būti kartu.</p>
         </div>
@@ -304,10 +305,9 @@ function ContentPage({ page }) {
       {page.id === "kontaktai" && (
         <div className="page-copy">
           <h2>Susitikime muzikoje.</h2>
-          <p>Gerb. Ponas Vardenis Pavardenis</p>
-          <p>Choro vadovas</p>
-          <p>+37061234567</p>
-          <p>ChoroPonas@gmail.com</p>
+          <p>Paulius Poškus - Choro vadovas</p>
+          <p>chorassandora@gmail.com</p>
+          <p>+370 664 23223</p>
         </div>
       )}
     </article>
