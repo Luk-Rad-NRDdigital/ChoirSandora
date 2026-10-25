@@ -6,6 +6,7 @@ const sections = [
   { id: "apie-mus", label: "Apie mus" },
   { id: "galerija", label: "Galerija" },
   { id: "kontaktai", label: "Kontaktai" },
+  { id: "renginiai", label: "Renginiai" },
 ];
 const currentPage = sections.find(({ id }) =>
   window.location.pathname.endsWith("/" + id + ".html"),
@@ -158,11 +159,17 @@ function HomePage() {
           </div>
         </div>
         <div className="hero-bottom">
-          <p>
-            Esame „Sandora“ — žmonės, kuriuos sujungia daina.
-            <br className="desktop" /> Kuriame skambesį, kuriame kiekvienas
-            balsas svarbus.
-          </p>
+          <div className="hero-introduction">
+            <p>
+              Esame „Sandora“ — žmonės, kuriuos sujungia daina.
+              <br className="desktop" /> Kuriame skambesį, kuriame kiekvienas
+              balsas svarbus.
+            </p>
+            <a className="event-link" href="./renginiai.html">
+              Artimiausi renginiai
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
       </div>
       <ChoirPhoto />
@@ -260,8 +267,7 @@ function Gallery() {
                 <a
                   href={`https://www.youtube.com/watch?v=${id}`}
                   aria-label={`Žiūrėti vaizdo įrašą ${index + 1} per YouTube`}
-                >
-                </a>
+                ></a>
               </figcaption>
             </figure>
           ))}
@@ -292,16 +298,32 @@ function ContentPage({ page }) {
       {page.id === "apie-mus" && (
         <div className="page-copy">
           <p>
-            Kamerinio choro „Sandora“ atliekamos pirmosios giesmės nuskambėjo Mažeikiuose, Šv. Pranciškaus Asyžiečio parapijoje. Choro pradžia siekia 2005 metus, kai atsikūrusioje parapijoje susibūrė Sumos choras.
-Nuo 2016 metų, vadovaujant Pauliui Poškui, kolektyvas kryptingai puoselėja chorinio giedojimo tradiciją – atlieka keturbalses lietuviškas ir lotyniškas sakralines giesmes. Daug laiko ir pastangų skiriama tam, kad kiekvienas kūrinys skambėtų darniai, būtų meniškai išpildytas ir klausytojui perteiktų muzikos prasmę bei emociją.
-Šiandien „Sandorą“ vienija 17 choristų. Greta sakralinės muzikos choras vis drąsiau plečia savo repertuarą ir pasaulietinės muzikos kūriniais, atrasdamas naujas skambesio spalvas ir atverdamas galimybes pasirodyti įvairesniuose kultūriniuose renginiuose bei koncertinėse erdvėse.
-Choras gieda atlaidų ir sakralinės muzikos festivalių metu, dalyvauja kultūriniuose renginiuose. 2025 metų vasarą „Sandora“ dalyvavo Plungės Šv. Jono Krikštytojo parapijos sakralinės muzikos festivalyje „Ave Maria Plungensis“, skirtame pagerbti iškilų vargonininką ir kompozitorių Juozą Žilevičių.
-„Sandora“ – tai bendrystėje gimstanti muzika, jungianti tradiciją ir naujus skambesius, sakralumą ir pasaulietinę muziką, o svarbiausia – žmones, kuriems dainavimas kartu yra daugiau nei muzika.
+            Kamerinio choro „Sandora“ atliekamos pirmosios giesmės nuskambėjo
+            Mažeikiuose, Šv. Pranciškaus Asyžiečio parapijoje. Choro pradžia
+            siekia 2005 metus, kai atsikūrusioje parapijoje susibūrė Sumos
+            choras. Nuo 2016 metų, vadovaujant Pauliui Poškui, kolektyvas
+            kryptingai puoselėja chorinio giedojimo tradiciją – atlieka
+            keturbalses lietuviškas ir lotyniškas sakralines giesmes. Daug laiko
+            ir pastangų skiriama tam, kad kiekvienas kūrinys skambėtų darniai,
+            būtų meniškai išpildytas ir klausytojui perteiktų muzikos prasmę bei
+            emociją. Šiandien „Sandorą“ vienija 17 choristų. Greta sakralinės
+            muzikos choras vis drąsiau plečia savo repertuarą ir pasaulietinės
+            muzikos kūriniais, atrasdamas naujas skambesio spalvas ir atverdamas
+            galimybes pasirodyti įvairesniuose kultūriniuose renginiuose bei
+            koncertinėse erdvėse. Choras gieda atlaidų ir sakralinės muzikos
+            festivalių metu, dalyvauja kultūriniuose renginiuose. 2025 metų
+            vasarą „Sandora“ dalyvavo Plungės Šv. Jono Krikštytojo parapijos
+            sakralinės muzikos festivalyje „Ave Maria Plungensis“, skirtame
+            pagerbti iškilų vargonininką ir kompozitorių Juozą Žilevičių.
+            „Sandora“ – tai bendrystėje gimstanti muzika, jungianti tradiciją ir
+            naujus skambesius, sakralumą ir pasaulietinę muziką, o svarbiausia –
+            žmones, kuriems dainavimas kartu yra daugiau nei muzika.
           </p>
           <p>Dainuoti. Jausti. Būti kartu.</p>
         </div>
       )}
       {page.id === "galerija" && <Gallery />}
+      {page.id === "renginiai" && <Events />}
       {page.id === "kontaktai" && (
         <div className="page-copy">
           <h2>Susitikime muzikoje.</h2>
@@ -311,6 +333,57 @@ Choras gieda atlaidų ir sakralinės muzikos festivalių metu, dalyvauja kultūr
         </div>
       )}
     </article>
+  );
+}
+
+function Events() {
+  return (
+    <section className="event" aria-labelledby="event-title">
+      <figure className="event-poster">
+        <img
+          src="./albino-jasenausko-festivalis.jpg"
+          alt="Albino Jasenausko sakralinės muzikos festivalio plakatas"
+          width="1206"
+          height="1707"
+        />
+      </figure>
+      <div className="event-copy">
+        <h2 id="event-title">🎶 Sakralinė muzika, kuri paliečia širdį...</h2>
+        <p>
+          Lapkričio 8 d. kviečiame į ypatingą muzikinę patirtį –{" "}
+          <em>Albino Jasenausko sakralinės muzikos festivalį</em>, kuriame
+          skambės ir Mažeikių kultūros centro kamerinio choro <em>„Sandora“</em>{" "}
+          balsai.
+        </p>
+        <p>
+          Džiaugiamės galėdami būti šio prasmingo muzikinio susitikimo dalimi ir
+          dalintis tuo, kas mus vienija – meile muzikai, jos grožiui ir dvasinei
+          gelmei.
+        </p>
+        <div className="event-participants">
+          <p>✨ Festivalyje taip pat dalyvaus:</p>
+          <p>🎼 Eglė Šeduikytė-Korienė – vargonininkė, muzikologė, pedagogė</p>
+          <p>🎼 Jurga Šeduikytė – dainininkė, muzikos kūrėja</p>
+        </div>
+        <div className="event-details">
+          <p>📍 Šv. Antano Paduviečio katedra, Telšiai</p>
+          <p>📅 Lapkričio 8 d.</p>
+          <p>🕐 13.00 val.</p>
+        </div>
+        <p className="event-invitation">
+          <em>
+            Kviečiame sustoti kasdienybės skuboje ir leisti muzikai prabilti į
+            širdį.
+          </em>{" "}
+          🤍
+        </p>
+        <p>
+          Su meile muzikai –
+          <br />
+          Mažeikių kultūros centro kamerinis choras „Sandora“
+        </p>
+      </div>
+    </section>
   );
 }
 

@@ -11,6 +11,7 @@ export default defineConfig({
         about: fileURLToPath(new URL("./apie-mus.html", import.meta.url)),
         gallery: fileURLToPath(new URL("./galerija.html", import.meta.url)),
         contact: fileURLToPath(new URL("./kontaktai.html", import.meta.url)),
+        events: fileURLToPath(new URL("./renginiai.html", import.meta.url)),
       },
     },
   },
