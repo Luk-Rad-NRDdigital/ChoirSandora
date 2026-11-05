@@ -112,9 +112,7 @@ function App() {
                 aria-current={currentPage?.id === id ? "page" : undefined}
               >
                 {label}
-                <span className="menu-arrow" aria-hidden="true">
-                  ↗
-                </span>
+                <ArrowIcon className="menu-arrow" />
               </a>
             ))}
           </div>
@@ -130,6 +128,19 @@ function App() {
         <small>© {new Date().getFullYear()} Choras „Sandora“</small>
       </footer>
     </>
+  );
+}
+
+function ArrowIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 16 16"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M4 12 12 4M5 4h7v7" />
+    </svg>
   );
 }
 
@@ -167,7 +178,7 @@ function HomePage() {
             </p>
             <a className="event-link" href="./renginiai.html">
               Artimiausi renginiai
-              <span aria-hidden="true">↗</span>
+              <ArrowIcon />
             </a>
           </div>
         </div>

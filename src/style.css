@@ -183,6 +183,17 @@ a:focus-visible {
   margin-left: auto;
   color: #d5b875;
 }
+.menu-arrow,
+.event-link svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
 .opening {
   max-width: 1440px;
   margin: auto;
@@ -288,9 +299,8 @@ h1 em {
     background-color 180ms ease,
     color 180ms ease;
 }
-.event-link span {
+.event-link svg {
   color: #97752f;
-  font-size: 18px;
 }
 .event-link:hover,
 .event-link:focus-visible {
